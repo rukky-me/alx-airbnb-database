@@ -77,7 +77,7 @@ LEFT JOIN
 --Refactor the query to reduce execution time, such as reducing unnecessary joins or using indexing.
 
 -- optimized_performance.sql
-SELECT 
+SELECT  
     b.booking_id,
     b.start_date,
     b.end_date,
@@ -101,5 +101,9 @@ JOIN
 JOIN 
     property p ON b.property_id = p.property_id
 LEFT JOIN 
-    payment pay ON b.booking_id = pay.booking_id;
+    payment pay ON b.booking_id = pay.booking_id
+
+WHERE 
+    b.status = 'confirmed'
+    AND u.role = 'guest';
 

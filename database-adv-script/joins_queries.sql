@@ -27,9 +27,9 @@ SELECT
     u.last_name,
     u.email
 FROM 
-    Booking b
+    booking b
 INNER JOIN 
-    User u ON b.user_id = u.user_id;
+    user u ON b.user_id = u.user_id;
 
 
 --LEFT JOIN Query
@@ -59,9 +59,9 @@ SELECT
     r.comment,
     r.created_at
 FROM 
-    Property p
+    property p
 LEFT JOIN 
-    Review r ON p.property_id = r.property_id;
+    review r ON p.property_id = r.property_id;
 
 
 --OUTER JOIN Query
@@ -88,7 +88,7 @@ SELECT
     b.end_date,
     b.total_price
 FROM 
-    User u
+    user u
 FULL OUTER JOIN 
-    Booking b ON u.user_id = b.user_id;
+    booking b ON u.user_id = b.user_id;
 

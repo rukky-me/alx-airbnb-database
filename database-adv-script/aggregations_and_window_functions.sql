@@ -37,13 +37,18 @@ ORDER BY
 
 --Rank properties based on total number of bookings
 --Uses: COUNT() + RANK() (window function)
+--COUNT(b.booking_id): Counts how many bookings each property has.
+--ROW_NUMBER() OVER (ORDER BY COUNT(b.booking_id) DESC) AS booking_rank: Assigns a unique rank to each property based on booking count 
+--GROUP BY: Ensures the aggregation (COUNT) works per property.
+--LEFT JOIN: Includes properties with zero bookings.
+
 
 
 SELECT 
     p.property_id,
     p.name,
     COUNT(b.booking_id) AS total_bookings,
-    RANK() OVER (ORDER BY COUNT(b.booking_id) DESC) AS booking_rank
+    ROW_NUMBER() OVER (ORDER BY COUNT(b.booking_id) DESC) AS booking_rank
 FROM 
     property p
 LEFT JOIN 
@@ -52,3 +57,4 @@ GROUP BY
     p.property_id, p.name
 ORDER BY 
     booking_rank;
+

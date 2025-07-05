@@ -50,7 +50,7 @@ INNER JOIN
 --Specifically, it checks if the property_id in Property matches the property_id in Review.
 
 
-SELECT 
+SELECT  
     p.property_id,
     p.name,
     p.location,
@@ -61,7 +61,10 @@ SELECT
 FROM 
     property p
 LEFT JOIN 
-    review r ON p.property_id = r.property_id;
+    review r ON p.property_id = r.property_id
+ORDER BY 
+    r.created_at DESC;
+
 
 
 --OUTER JOIN Query

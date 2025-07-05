@@ -15,3 +15,23 @@ CREATE INDEX idx_property_property_id ON property(property_id);
 CREATE INDEX idx_property_host_id ON property(host_id);
 CREATE INDEX idx_property_location ON property(location);
 CREATE INDEX idx_property_pricepernight ON property(pricepernight);
+
+
+/*Measure the query performance before and after adding indexes using EXPLAIN or ANALYZE.*/
+-- Before indexing to measure performance.
+
+EXPLAIN ANALYZE
+SELECT 
+    u.first_name,
+    u.last_name,
+    COUNT(b.booking_id) AS total_bookings
+FROM 
+    "user" u
+JOIN 
+    booking b ON u.user_id = b.user_id
+WHERE 
+    u.role = 'guest'
+GROUP BY 
+    u.user_id
+ORDER BY 
+    total_bookings DESC;
